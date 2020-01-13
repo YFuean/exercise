@@ -11,12 +11,10 @@ import java.util.List;
  * @Date 2020/1/13
  **/
 public class RandomNumberOutput {
-    public static void main(String[] args) throws IOException {
-        //List<Integer> list = new ArrayList<>();
+    public static void main(String[] args) {
         StringBuffer values = new StringBuffer();
         for (int i = 1; i <= 100; i++) {
             int number = (int) (Math.random() * 100);
-            //list.add(number);
             values.append(" "+number);
         }
         File file = new File("D:/number.txt");
