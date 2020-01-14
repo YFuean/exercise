@@ -2,7 +2,9 @@ package com.week1;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 /**
  * @ClassName RandomNumberOutput
@@ -11,25 +13,19 @@ import java.util.List;
  * @Date 2020/1/13
  **/
 public class RandomNumberOutput {
-    public static void main(String[] args) {
-        StringBuffer values = new StringBuffer();
-        for (int i = 1; i <= 100; i++) {
-            int number = (int) (Math.random() * 100);
-            values.append(" "+number);
+    public static void main(String[] args) throws IOException{
+        int[] num = new int[100];
+        Random random = new Random();
+        for (int i = 0;i<100;i++){
+            num[i] = random.nextInt(100);
         }
+        System.out.println(Arrays.toString(num));
         File file = new File("D:/number.txt");
-        if (!file.exists()) {
-            try {
-                FileWriter fw = new FileWriter(file);
-                fw.write(String.valueOf(values));
-                fw.close();
-                System.out.println("写入成功！");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        else {
-            System.out.println("文件已存在！");
-        }
+        Writer writer = new FileWriter(file,true);
+        PrintWriter out = new PrintWriter(writer);
+        out.print(Arrays.toString(num));
+        out.flush();
+        out.close();
+        writer.close();
     }
 }
